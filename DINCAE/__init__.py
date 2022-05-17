@@ -157,7 +157,8 @@ the temporal mean of the data.
     ntime = sz[0]
     ndata = len(data_full)
 
-    dayofyear = np.array([d.timetuple().tm_yday for d in time])
+#     dayofyear = np.array([d.timetuple().tm_yday for d in time])
+    dayofyear=np.array([(np.datetime64(i).astype('datetime64[D]') - np.datetime64(i).astype('datetime64[M]') + 1).astype(int) for i in time])
     dayofyear_cos = np.cos(2 * np.pi * dayofyear/365.25)
     dayofyear_sin = np.sin(2 * np.pi * dayofyear/365.25)
 
