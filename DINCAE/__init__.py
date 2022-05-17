@@ -88,23 +88,23 @@ attributes:
     time = ds.variables["time"][:].values
     data = ds.variables[varname][:,:,:].values;
 
-    if "mask" in ds.variables:
-        mask = ds.variables["mask"][:,:].data == 1;
-    else:
-        print("compute mask for ",varname,": sea point should have at least ",
-              minfrac," for valid data tought time")
+#     if "mask" in ds.variables:
+    mask = ds.variables["mask"][:,:].data == 1;
+#     else:
+#         print("compute mask for ",varname,": sea point should have at least ",
+#               minfrac," for valid data tought time")
 
-        if np.isscalar(data.mask):
-            mask = np.ones((data.shape[1],data.shape[2]),dtype=np.bool)
-        else:
-            mask = np.mean(~data.mask,axis=0) > minfrac
+#         if np.isscalar(data.mask):
+#             mask = np.ones((data.shape[1],data.shape[2]),dtype=np.bool)
+#         else:
+#             mask = np.mean(~data.mask,axis=0) > minfrac
 
 
-        print("mask: sea points ",np.sum(mask))
-        print("mask: land points ",np.sum(~mask))
+    print("mask: sea points ",np.sum(mask))
+    print("mask: land points ",np.sum(~mask))
 
-    print("varname ",varname,mask.shape)
-    ds.close()
+#     print("varname ",varname,mask.shape)
+#     ds.close()
 
     if np.isscalar(data.mask):
         missing = np.zeros(data.shape,dtype=np.bool)
