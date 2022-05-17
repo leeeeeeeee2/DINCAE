@@ -37,7 +37,7 @@ import numpy as np
 import tensorflow as tf
 from datetime import datetime
 import logging
-
+import xarray as xr
 logger = logging.getLogger('root')
 FORMAT = "[%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
 logging.basicConfig(format=FORMAT)
@@ -81,12 +81,12 @@ attributes:
     }
 
 """
-    ds = Dataset(fname);
+    ds = xr.open_dataset(fname);
     lon = ds.variables["lon"][:].data;
     lat = ds.variables["lat"][:].data;
-    time = num2date(ds.variables["time"][:],ds.variables["time"].units);
-
-    data = ds.variables[varname][:,:,:];
+#     time = num2date(ds.variables["time"][:],ds.variables["time"].units);
+    time = ds.variables["time"][:].values
+    data = ds.variables[varname][:,:,:].values;
 
     if "mask" in ds.variables:
         mask = ds.variables["mask"][:,:].data == 1;
