@@ -106,10 +106,10 @@ attributes:
 #     print("varname ",varname,mask.shape)
 #     ds.close()
 
-    if np.isscalar(data.mask):
-        missing = np.zeros(data.shape,dtype=np.bool)
-    else:
-        missing = data.mask
+#     if np.isscalar(data.mask):
+#         missing = np.zeros(data.shape,dtype=np.bool)
+#     else:
+    missing =mask
 
     print("data shape: ",data.shape)
     print("data range: ",data.min(),data.max())
