@@ -178,7 +178,7 @@ the temporal mean of the data.
     x = np.zeros((sz[0],sz[1],sz[2],2*ndata + 4),dtype="float32")
 
     for i in range(ndata):
-        x[:,:,:,2*i] = data[i].filled(0) / (obs_err_std[i]**2)
+        x[:,:,:,2*i] = data[i].fill(0) / (obs_err_std[i]**2)
         x[:,:,:,2*i+1] = (1-data[i].mask) / (obs_err_std[i]**2)  # error variance
 
     # scale between -1 and 1
